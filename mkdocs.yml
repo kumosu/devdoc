@@ -1,0 +1,7 @@
+site_name: KUMO.SU Docs
+site_description: Bring Your Own Cloud — private cloud platform documentation
+
+theme:
+  name: terminal
+  palette: dark
+

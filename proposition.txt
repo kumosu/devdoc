@@ -1,0 +1,34 @@
+KUMOSU extends your smartphone with the power to run your independent social media, sites and p2p applications, or just cloud storage.
+
+It replaces Google Drive, iCloud, and all social media altogether by extending your digital fortress beyond your device.
+
+Instgram -> Pixifeed
+Google Photos -> Immich
+YouTube -> Peertube
+
+All of this fully yours, on your terms.
+
+----
+
+
+For creators
+
+Your own independent media. No platform rules, fees and algorithms.
+Replacement for Patreon, YouTube and Instagram.
+
+For everybody
+
+Own all your data and social cost-efficient and 100% private.
+Dropbox and iPhotos that belong to you.
+
+
+For developers
+
+Create long-lasting application 
+
+---
+
+All of above 100% free on your own computer
+or pay for actual use with kumo.su.
+
+Single accoun

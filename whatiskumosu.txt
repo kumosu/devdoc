@@ -1,0 +1,45 @@
+What is kumo.su?
+--
+
+It's like iCloud or Google Drive, but 1) it's your own and 2) with cloud applications.
+
+Until now any self-hosted app work the same way: user should be advanced IT guy to setup server and put IP address into mobile app login form.
+
+With kumo.su, it's the other way around: user just logs in to mobile app, and the app does all necessary setup within user's account.
+
+User's account can be it's own server running free and open source kumo.su instance. And kumo.su has zero involvement into it.
+Or user can have managed account in kumo.su. In this case we are just hosting provider, not the guys storing all photos in the same database for conveninent AI learning. Your data is not our hostage - there will always be a button to migrate all data to your private instance.
+kumo.su cloud will have only two tiers: free and pay-as-go. No more "pay $5 dollar here and there for this app storing 1kib file in its own cloud".
+
+For developer
+--
+
+BYOC SDK enables seamless deployment of server apps to a generic infrastructure.
+
+You app needs server? The best way to deploy is not asking user to mangle docker containers, but your app do it yourself.
+You won't need to deploy and manage your our infrastructure, and your app will live forever.
+
+We will also share profit from kumosu-managed instances to support develpoment of lasting forever applications.
+
+
+Our mission
+--
+
+Lock out users from vendor infrastructure, giving them conveninent way to run applications in their own infra.
+We will do this by creating open standard, free implementation of BYOC cloud.
+
+
+Terminology
+--
+
+BYOC SDK - software delopment kit to deploy and control server apps into private cloud instances. This is based on WebFinger and OIDC to discover API for managing users application.
+
+kumo.su - cloud for users that support BYOC SDK.
+
+
+-----
+TYPEFORM
+Collect email from people having interest in our product. I want form to ask email first (we will contact you only for two occasions - to announce product availability and community place availability (probably matrix group), then optional questions:
+* are you developer of self hosted app?
+* (if developer) gives us links to your project and will reach you out for collaboration
+* (if not dev) are you familiar with self-hosting? (if not) we wont dissapoint you 

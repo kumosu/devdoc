@@ -1,0 +1,303 @@
+KUMO.SU - Bring You Own Cloud
+
+
+Your digital fortress
+
+KUMOSU extends your digital space beyond your mobile
+
+KUMOSU is your private cloud enabling p2p applications
+
+
+Цель - объединить:
+* удобство и надежность облака
+* приватность и независимость self-hosted
+
+What is it?
+
+Standard APIs and SDKs for apps to deploy server apps to a user-provided environment.
+
+Why?
+
+
+* get rid of app vendor lock (when developer of the app owns cloud and keeps user data)
+* total privacy - server part of the app runs in user-owned isolated enviroment
+* cost effiency - under-utilized server apps will cost nothing for each user
+* same convenience for self-hosted and cloud provider options
+* app developers can focus on making apps instead of managing infrastructure
+
+
+What to run?
+
+Tier I apps - personal cloud:
+ - photos
+ - music
+ - password manager
+
+Tier II apps - fediverse / p2p
+ - blogs
+ - websites
+ - photo/video content
+
+
+Navidrome - music streaming
+Immich - photo library management
+Vaultwarden - password management
+Dendrite - messaging server in Matrix network
+microblog.pub - microblogging server with ActivityPub federation
+
+Good use cases:
+* single user app with synchronization needs (e.g. password manager)
+* single user apps with sharing options (e.g. photo library)
+* federated networks apps (Matrix, ActivityPub)
+
+
+
+Отличие от Coolify
+
+Coolify позволяет запускать любые приложения в контейнерах, а также управляет разными СУБД (Postgres, MySQL).
+
+BYOC фокусируется на приложения со сверх-низкой утилизацией (V8, WASM) и на стандартизированных интерфейсах хранения (SQL, Blob, KV).
+
+Это дает большие гарантии безопасности, чем контейнеры. И позволяет запускать серверную часть для десятков и сотен приложений на самой худой виртуалке.
+
+
+
+-----
+
+
+Tech spec
+---
+
+
+Components:
+
+1. Compliant private cloud instance (PCI)
+	* DNS zone
+	* OAuth2 provider
+	* Runtime and storage orchestrator
+	* Storage options:
+		* sqlite
+		* blob storage (s3)
+			* content-addressable storage (ipfs)
+	* Connectivity:
+		* http(s) endpoint (domain/path routing)
+		* private app<>backend endpoint
+		* http client
+2. SDK is integrated to client apps and provides authenticated deployment to a PCI
+	* obtains a token unique to a single instance of the client app
+	* can query PCI for backend instances (servlets)
+	* can deploy the "servlets"
+	* servlets are identified by their hash, making them content-addressable.
+	* can talk to backend if authorized by user
+
+
+Example user flow:
+
+* user install "Flo - navidrome client"
+* on welcome screen, app prompts: log in using your FreeCloud account
+	1a user already has self-hosted instance, they type: "hasselbach.ru"
+	1b user dont care much a selects "create account on FreeCloud.com"
+	2 user sign-in, app receives a token
+* app query if there is any "navidrome" backend out there
+	* optionally, an app can support working with many backend, but not necessarily
+* user authorizes connection of the app to the select backend
+* the app allows music uploading
+
+
+Web Connectivity:
+
+	shared (boxo.cloud)
+		website	alex.boxo.cloud
+		email	alex@alex.boxo.cloud
+		matrix	@alex:alex.boxo.cloud
+		a.pub.	@alex@alex.boxo.cloud
+
+	shared (boxo.cloud, WebFinger )
+		website	alex.boxo.cloud
+		email	alex@boxo.cloud
+		matrix	@alex:boxo.cloud
+		a.pub.	@alex@boxo.cloud
+
+	personal (hsslb.ch)
+		email	alex@alex.com
+		matrix	@alex:alex.com
+		a.pub.	@alex@boxo.cloud
+
+
+Future consideration:
+---
+
+Private cloud has potential to become standard backbone for fediverse.
+A single user cloud could take over all social networks: X, Instagram, YouTube, Patreon.
+User can manage all their content within their own cloud (whenever its their server or just paid account - migration is allowed and endorsed).
+
+There are multiple problems to solve:
+* Spam (drop non-authentic or not welcome communication)
+* DDoS attacks (avoid ActivityPub feed to be overwhelmed)
+* highload
+
+Another perspective is layered solutions that can integrate on various layers of the PCI:
+* protect blog with a x402 paywal or captcha (reverse proxies)
+* setup CDN-proxy for all your apps as another app (DNS management)
+* backup (storage provider)
+
+
+Monetizaion
+---
+
+Many users would like to monetize their space.
+Monetization is about who pays and for what
+
+For what is like:
+* paid chat to the author
+* access to content (single piece or subscription)
+
+Who pays:
+* user pays
+* user pays for a group of user (family access)
+* advertiser pays in exchange to show consumer ads along the content
+
+This is not direct concert of BYOC, but the architecture should allow this use-case.
+
+Example of such arch is:
+* separate "Monetization" app with its own servlet
+* non-invasive integration:
+	* servlet gates access to a URL without interaction with underlying app
+* invasive integration:
+	* an app's servlet (e.g. blog) follows x402 protocol and return HTTP 402 when necessary, the "Monetization" app handles this response to enable users do the payment
+
+
+
+Cryptography
+---
+
+There is WASI for that
+
+
+Web apps store
+---
+
+Some applications are purely web-based, and don't have mobile/desktop clients.
+
+So for them two possible entrypoints available:
+* creator website could place "Install in BYOC" button, which should lead somewhere (central byoc.com? or ask user for their account)
+* inside user's instance, there could be a markeplace (perhaps, an app itself) where apps could be discovered
+
+
+
+Other apps
+---
+
+
+### Avito
+
+Why bothering with Avito?
+
+* it is solving disputes/fraud/trust (at least to some degree)
+* it has all data aggergated and searchable
+
+Can avito be repalces with federation?
+* each merchant can have its own shop:
+	* servlet deployed to shop.alexdarkstalker1991.kumo.su
+
+* where goes buyer? - it has their own app, it can have servlet to peer with other instances and aggregate necessary data
+
+* maybe introduce third role - people to take on disputes
+
+Incentive for developer of the app?
+- App (or its server (hence merchant side) capability) can be paid
+- Royalty from FreeCloud platform
+
+
+
+Users and user groups
+----
+
+Model is following:
+* kumo.su is our managed cloud, there could be additional domains (some are alias, some are distinct)
+	* alex.kumo.so is PCI - private cloud instance
+
+	urls that kumo serves
+  		kumo.su/.well-known/webfinger?subject=alex@kumo.su redirects to alex.kumo.su/*, servlets are expected to cooperate there
+  		kumo.su/.well-known/openid-configuration lets user to login
+
+  kumo.su/account/ - is place to control your PCI
+
+
+What if i want to share instance? That's up to a specific app (backend). E.g. Navidrome could allow to invite other users
+
+
+----
+
+Tech questions
+
+- Secrets management
+- Ingress configuration (paths, subdomains)
+- Egress configuration (allow app access internet? which protocols?)
+- Developer control plane:
+	- if app is deployed in kumo.su, then the developer should be able to get some insights on their app for troubleshooting
+	- in self-managed instance, it should be easy to share diagnostic info with developer, maybe even in automatic way
+
+
+
+
+I
+https://github.com/cloudflare-apps/ideas/issues
+
+
+----
+
+Common services
+
+Users may benefit from having some backends that are shared across servlets.
+
+This could be, for example, data aggregation services like search engine. We should enable to declare dependency on such service, and that service may be shared with other apps.
+THis however will lead to versioning problem. What if app A requires search engine v1, and app B requires search engine v2?
+	- This might be solved by duck typing.
+	- Or, instead of intriducing dependency, we should let search engine itself discover existing backend and dela with them the way they are.
+
+
+Use cases:
+ - RSS/ActivityPub/ATProto aggregation for social discovery/interaction
+ - Search engine, sitemap builder
+ - Analytics
+
+Types of integration:
+* aggregator looks into BYOC API and discovers all deployed resources, them access them giving available information
+	- in this case, security is managed by apps - they may or may not let aggregator to access resources
+	- maybe we should provide standard way to authorize apps between each other
+* middleware injects into ingress, then manipulates requests/responses
+	- this may be very useful if we want app to inject code or something like this
+	- but it's hard to define approach that simple and secure in the same time
+		- some bad actor can install middleware that steals data
+		- in the same time it's hard to educate users on how they should manage middleware - they will simple install "Analytics for BYOC"
+	- so probably, it's app to "blog app" to somehow let "analytics app" to integrate
+		- or maybe it's "blog app" acts as search engine in previous example, it discovers "analytics app" in user's cloud and talks to it
+
+
+
+---
+
+Communications
+
+Types:
+- Internet -> Servlet
+	- Authenticated user -> Servlet
+	- Guest -> Servlet
+- Servlet -> Internet (egress)
+- Servlet -> Servlet
+
+No resources (db, s3 buckets, queues) are shared between servlets.
+
+
+---
+
+Resources
+
+While serverless vision is great. There might be cases when actual hardware matter: gpu, usb and other devices.
+
+Cryptocurrency support:
+- wallet as a resource - with interface instead of providing private keys
+
+
+
