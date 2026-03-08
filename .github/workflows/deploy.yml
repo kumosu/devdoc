@@ -19,23 +19,32 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # Fetch all history for git info
 
       - uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - name: Install Dependencies
+      - name: Clone Quartz
+        run: git clone --depth 1 --branch v4 https://github.com/jackyzha0/quartz.git /tmp/quartz
+
+      - name: Install Quartz dependencies
         run: npm ci
+        working-directory: /tmp/quartz
+
+      - name: Copy content and config
+        run: |
+          rm -rf /tmp/quartz/content
+          cp -r content /tmp/quartz/content
+          cp quartz.config.ts /tmp/quartz/quartz.config.ts
 
       - name: Build Quartz
         run: npx quartz build
+        working-directory: /tmp/quartz
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: public
+          path: /tmp/quartz/public
 
   deploy:
     needs: build
