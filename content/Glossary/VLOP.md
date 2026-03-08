@@ -1,0 +1,2 @@
+Very Large Online Platform is the term from [DSA](https://en.wikipedia.org/wiki/Digital_Services_Act) means platforms with 45M+ MAU in the EU.
+Facebook, YouTube, Twitter (X.com), Instagram are all VLOPs.

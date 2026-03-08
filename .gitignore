@@ -1,0 +1,6 @@
+
+# Quartz build output (built inside container)
+public/
+
+# OS
+.DS_Store

@@ -1,0 +1,19 @@
+services:
+  docs:
+    build:
+      context: .
+      target: dev
+    volumes:
+      - ./content:/quartz/content
+      - ./quartz.config.ts:/quartz/quartz.config.ts
+    ports:
+      - "8080:8080"
+
+  docs-prod:
+    build:
+      context: .
+      target: prod
+    ports:
+      - "8081:80"
+    profiles:
+      - prod
