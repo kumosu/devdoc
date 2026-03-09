@@ -10,4 +10,4 @@ Independence & connections should be achievable without being a hacker.
 ### Economy of scale matters
 
 [[VLOP]] can afford their scale because of highest possible density of user data. For our nature, it is not good for each user to have their own dedicated servers. But each user deserve to have their own place.
-This can be achieved, if users share compute power: with a family or by running a serverless code.
+This can be achieved, if users share compute power: with a family, friends or by running a serverless code.

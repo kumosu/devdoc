@@ -1,0 +1,6 @@
+- Secrets management  
+- Ingress configuration (paths, subdomains)  
+- Egress configuration (allow app access internet? which protocols?)  
+- Developer control plane:  
+    - if app is deployed in kumo.su, then the developer should be able to get some insights on their app for troubleshooting  
+    - in self-managed instance, it should be easy to share diagnostic info with developer, maybe even in automatic way

@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/index.md",
+                "file": "content/Open questions/Sharing app between multiple users.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "index"
+              "title": "Sharing app between multiple users"
             }
           },
           {
@@ -284,30 +284,39 @@
   },
   "active": "664edd06cbec71dc",
   "lastOpenFiles": [
+    "content/Open questions/Open questions.md",
+    "content/Open questions/Sharing app between multiple users.md",
+    "content/Architecture/Communications.md",
+    "content/Open questions/Hardware support.md",
+    "content/Architecture",
+    "content/Open questions/Cryptocurrencies support.md",
+    "content/Vision/Shared backend services.md",
+    "content/Open questions",
+    "content/Vision/Trust networks.md",
+    "content/Vision/Classifieds, flee markets, Avito.md",
+    "content/Vision/Web apps marketplace.md",
+    "content/Vision/Monetization.md",
+    "content/Philosophy.md",
+    "content/index.md",
+    "content/Vision/Recommendation system.md",
     "unsorted/freecloud.txt",
     "unsorted/proposition.txt",
     "unsorted/whatiskumosu.txt",
     "unsorted",
     "content/Glossary/BYOC.md",
     "quartz.config.ts",
-    "content/Vision/Recommendation system.md",
     "AGENTS.md",
     "content/Vision/YouTube alternative done right.md",
     "content/Glossary/KUMO.SU.md",
     "content/Glossary/VLOP.md",
-    "content/Philosophy.md",
     "content/Market research/Dendrite Matrix Homeserver Setup.md",
     "content/Market research/Matrix Protocol for AI Agent Interfaces.md",
     "content/Market research/Serverless friendly apps.md",
     "content/docs/servers-research.md",
-    "content/index.md",
     "content/docs",
     "content",
     "Dockerfile",
-    "content/Market research",
     "docs/dendrite-matrix-server.md",
-    "docs/index.md",
-    "Untitled",
-    "content/Glossary"
+    "docs/index.md"
   ]
 }
