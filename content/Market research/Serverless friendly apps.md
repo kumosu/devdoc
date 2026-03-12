@@ -80,10 +80,10 @@ Key criteria: language, storage/queue dependencies, idle resource usage.
 
 ## Music Streaming
 
-| App | Lang | Storage | Queue | Notes |
-|-----|------|---------|-------|-------|
-| **Navidrome** | Go | SQLite | none | Single binary, ~50MB RAM, ffmpeg for transcoding, Subsonic API |
-| **Funkwhale** | Python/Django | PostgreSQL | Redis | ActivityPub-federated music sharing, heavier but social |
+| App           | Lang          | Storage    | Queue | Notes                                                          |
+| ------------- | ------------- | ---------- | ----- | -------------------------------------------------------------- |
+| **Navidrome** | Go            | SQLite     | none  | Single binary, ~50MB RAM, ffmpeg for transcoding, Subsonic API |
+| **Funkwhale** | Python/Django | PostgreSQL | Redis | ActivityPub-federated music sharing, heavier but social        |
 
 **Verdict:** Navidrome is a perfect KUMO.SU app — Go binary + SQLite + optional ffmpeg. ~50MB idle RAM. Funkwhale interesting for the social/federation angle (ActivityPub for music libraries) but much heavier stack.
 
@@ -128,10 +128,10 @@ Key criteria: language, storage/queue dependencies, idle resource usage.
 
 ### RSS / Feed Aggregation
 
-| App | Lang | Storage | Notes |
-|-----|------|---------|-------|
-| **Miniflux** | Go | PostgreSQL | Minimal, fast, API-first |
-| **Fusion** | Go | SQLite | ~80MB RAM, includes bookmarks, PWA |
+| App          | Lang | Storage    | Notes                              |
+| ------------ | ---- | ---------- | ---------------------------------- |
+| **Miniflux** | Go   | PostgreSQL | Minimal, fast, API-first           |
+| **Fusion**   | Go   | SQLite     | ~80MB RAM, includes bookmarks, PWA |
 
 **Strategic note:** RSS is the original open social graph. A personal aggregator could be the backbone for the "social discovery" use case (RSS/ActivityPub/ATProto aggregation) mentioned in the spec.
 
